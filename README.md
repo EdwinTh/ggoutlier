@@ -5,9 +5,11 @@
 
 <!-- badges: start -->
 
+[![Build
+Status](https://travis-ci.org/EdwinTh/ggoutlier.svg?branch=master)](https://travis-ci.org/EdwinTh/ggoutlier)
 <!-- badges: end -->
 
-A package with wrapper functions that deals with outliers, making the
+A package with wrapper functions that deal with outliers, making the
 regular range interpretable without abandoning the outliers.
 
 ## Installation
