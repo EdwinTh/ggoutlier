@@ -27,20 +27,20 @@
 #' @return An object of class `ggplot`.
 #'
 #' @examples
-#' gg_outlier_hist(mtcars, "disp", cut_off_floor = 100)
-#' gg_outlier_hist(mtcars, "disp", cut_off_ceiling = 300)
-#' gg_outlier_hist(mtcars, "disp", cut_off_floor = 100, cut_off_ceiling = 300)
-#' gg_outlier_hist(mtcars, "disp", cut_off_floor = 100, fill = "firebrick")
-#' gg_outlier_hist(mtcars, "disp", cut_off_floor = 100, binwidth = 10)
-#' gg_outlier_hist(mtcars, "disp", cut_off_floor = 100, fill_outlier_bins = "gold")
+#' ggoutlier_hist(mtcars, "disp", cut_off_floor = 100)
+#' ggoutlier_hist(mtcars, "disp", cut_off_ceiling = 300)
+#' ggoutlier_hist(mtcars, "disp", cut_off_floor = 100, cut_off_ceiling = 300)
+#' ggoutlier_hist(mtcars, "disp", cut_off_floor = 100, fill = "firebrick")
+#' ggoutlier_hist(mtcars, "disp", cut_off_floor = 100, binwidth = 10)
+#' ggoutlier_hist(mtcars, "disp", cut_off_floor = 100, fill_outlier_bins = "gold")
 #'
 #' # Note that the result is a regular ggplot object
 #' #   that you can postprocess the way you want.
-#' p <- gg_outlier_hist(mtcars, "disp", cut_off_floor = 100, cut_off_ceiling = 300)
+#' p <- ggoutlier_hist(mtcars, "disp", cut_off_floor = 100, cut_off_ceiling = 300)
 #' p + ggplot2::ggtitle("A histogram with binned outliers") +
 #'   ggplot2::ylab("Nr of occurences")
 #' @export
-gg_outlier_hist <- function(x,
+ggoutlier_hist <- function(x,
                             var_name,
                             cut_off_floor     = NA_real_,
                             cut_off_ceiling   = NA_real_,
@@ -85,12 +85,14 @@ gg_outlier_hist <- function(x,
     ticks_for_floor <- update_tickmarks_floor(plot_obj, cut_off_floor,
                                               printing_min_max[1])
     plot_obj <-
+      suppressMessages(
         plot_obj +
           ggplot2::geom_histogram(data = x_floor,
                                   fill = fill_outlier_bins,
                                   col = col, binwidth = binwidth) +
           ggplot2::scale_x_continuous(breaks = ticks_for_floor$tick_positions,
                                       labels = ticks_for_floor$tick_labels)
+      )
   }
   plot_obj
 }

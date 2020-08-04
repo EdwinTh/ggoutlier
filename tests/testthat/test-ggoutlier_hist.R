@@ -1,29 +1,29 @@
-context("gg_outlier_hist - input checking")
+context("ggoutlier_hist - input checking")
 
-test_that("gg_outlier_hist throws informative error when var_name not in x", {
-  expect_error(gg_outlier_hist(mtcars, "Adriaantje", 42),
+test_that("ggoutlier_hist throws informative error when var_name not in x", {
+  expect_error(ggoutlier_hist(mtcars, "Adriaantje", 42),
                "Adriaantje is not a column in x")
-  expect_error(gg_outlier_hist(mtcars, "disp", 100), NA)
+  expect_error(ggoutlier_hist(mtcars, "disp", 100), NA)
 })
 
-test_that("gg_outlier_hist throws informative for cut_offs", {
-  expect_error(gg_outlier_hist(mtcars, "disp"),
+test_that("ggoutlier_hist throws informative for cut_offs", {
+  expect_error(ggoutlier_hist(mtcars, "disp"),
                "Neither cut_off_floor, nor cut_off_ceiling are specified")
-  expect_error(gg_outlier_hist(mtcars, "disp", 42, 41),
+  expect_error(ggoutlier_hist(mtcars, "disp", 42, 41),
                "cut_off_floor should be smaller than cut_off_ceiling")
-  expect_error(gg_outlier_hist(mtcars, "disp", 42, 42),
+  expect_error(ggoutlier_hist(mtcars, "disp", 42, 42),
                "cut_off_floor should be smaller than cut_off_ceiling")
-  expect_error(gg_outlier_hist(mtcars, "disp", 100, 200), NA)
-  expect_error(gg_outlier_hist(mtcars, "disp", cut_off_floor = 20),
+  expect_error(ggoutlier_hist(mtcars, "disp", 100, 200), NA)
+  expect_error(ggoutlier_hist(mtcars, "disp", cut_off_floor = 20),
                "cut_off_floor lower than the lowest value in disp")
-  expect_error(gg_outlier_hist(mtcars, "disp", cut_off_floor = 500),
+  expect_error(ggoutlier_hist(mtcars, "disp", cut_off_floor = 500),
                "cut_off_floor higher than the highest value in disp")
-  expect_error(gg_outlier_hist(mtcars, "disp", cut_off_ceiling = 500),
+  expect_error(ggoutlier_hist(mtcars, "disp", cut_off_ceiling = 500),
                "cut_off_ceiling higher than the highest value in disp")
 })
 
 
-context("gg_outlier_hist - get_printing_min_max")
+context("ggoutlier_hist - get_printing_min_max")
 
 test_that("get_printing_min_max gives correct output", {
   mm <- get_printing_min_max(mtcars, "disp")
@@ -40,7 +40,7 @@ test_that("get_printing_min_max works with NA values", {
                get_printing_min_max(mtcars_copy, "disp"))
 })
 
-context("gg_outlier_hist - filter_regular_x")
+context("ggoutlier_hist - filter_regular_x")
 
 test_that("filter_regular_x gives the correct output", {
   x <- data.frame(a = 1:10, b = 1:10)
