@@ -1,12 +1,15 @@
 Package: ggoutlier
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Adjusted ggplots that effectively deal with outliers
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Edwin Thoen
+Maintainer: Edwin Thoen <edwinthoen@gmail.com>
+Description: Outliers can distort plots, preventing interpretation of the regular
+  range. Simply omitting the outliers can give the impression the 
+  data points are not there. The custom plots in this package collapse
+  the outliers to single element, such that both the regular range is 
+  can be interpreted, and the presence of outliers is noted.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
@@ -15,3 +18,4 @@ Suggests:
     testthat
 URL: https://github.com/EdwinTh/ggoutlier
 BugReports: https://github.com/EdwinTh/ggoutlier/issues
+RoxygenNote: 7.1.0

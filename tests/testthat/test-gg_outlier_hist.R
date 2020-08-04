@@ -3,19 +3,21 @@ context("gg_outlier_hist - input checking")
 test_that("gg_outlier_hist throws informative error when var_name not in x", {
   expect_error(gg_outlier_hist(mtcars, "Adriaantje", 42),
                "Adriaantje is not a column in x")
-  expect_error(gg_outlier_hist(x, "cyl", 42), NA)
+  expect_error(gg_outlier_hist(mtcars, "disp", 100), NA)
 })
 
 test_that("gg_outlier_hist throws informative for cut_offs", {
-  expect_error(gg_outlier_hist(mtcars, "cyl"),
+  expect_error(gg_outlier_hist(mtcars, "disp"),
                "Neither cut_off_floor, nor cut_off_ceiling are specified")
-  expect_error(gg_outlier_hist(mtcars, "cyl", 42, 41),
+  expect_error(gg_outlier_hist(mtcars, "disp", 42, 41),
                "cut_off_floor should be smaller than cut_off_ceiling")
-  expect_error(gg_outlier_hist(mtcars, "cyl", 42, 42),
+  expect_error(gg_outlier_hist(mtcars, "disp", 42, 42),
                "cut_off_floor should be smaller than cut_off_ceiling")
-  expect_error(gg_outlier_hist(mtcars, "cyl", 42, 41), NA)
-  expect_error(gg_outlier_hist(mtcars, "disp", 20),
+  expect_error(gg_outlier_hist(mtcars, "disp", 100, 200), NA)
+  expect_error(gg_outlier_hist(mtcars, "disp", cut_off_floor = 20),
                "cut_off_floor lower than the lowest value in disp")
+  expect_error(gg_outlier_hist(mtcars, "disp", cut_off_floor = 500),
+               "cut_off_floor higher than the highest value in disp")
   expect_error(gg_outlier_hist(mtcars, "disp", cut_off_ceiling = 500),
                "cut_off_ceiling higher than the highest value in disp")
 })
@@ -24,7 +26,7 @@ test_that("gg_outlier_hist throws informative for cut_offs", {
 context("gg_outlier_hist - get_printing_min_max")
 
 test_that("get_printing_min_max gives correct output", {
-  mm <- get_printing_min_max(x, "disp")
+  mm <- get_printing_min_max(mtcars, "disp")
   expect_equal(length(mm), 2)
   expect_named(mm, c("min", "max"))
   expect_equal(unname(mm[1]), 71.1)
