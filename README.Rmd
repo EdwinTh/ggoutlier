@@ -32,7 +32,12 @@ devtools::install_github("EdwinTh/ggoutlier")
 
 The package contains a single function: `ggoutlier_hist`. More may be added in the future.
 
-```{r example}
+```{r example, message=FALSE}
 library(ggoutlier)
+library(ggplot2)
+set.seed(1235)
+x <- data.frame(some_var = c(rnorm(100), runif(10, -100, 100)))
+ggplot(x, aes(some_var)) + geom_histogram()
+# ggoutlier_hist(x, "some_var", -5, 5)
 ```
 

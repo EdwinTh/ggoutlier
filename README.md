@@ -26,4 +26,14 @@ added in the future.
 
 ``` r
 library(ggoutlier)
+library(ggplot2)
+set.seed(1235)
+x <- data.frame(some_var = c(rnorm(100), runif(10, -100, 100)))
+ggplot(x, aes(some_var)) + geom_histogram()
+```
+
+<img src="man/figures/README-example-1.png" width="100%" />
+
+``` r
+# ggoutlier_hist(x, "some_var", -5, 5)
 ```
