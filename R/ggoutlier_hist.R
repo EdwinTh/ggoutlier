@@ -130,22 +130,22 @@ hist_input_checking <- function(x,
   }
 
   if (!is.na(cut_off_floor)) {
-    if (cut_off_floor < min(x[[var_name]])) {
+    if (cut_off_floor < min(x[[var_name]], na.rm = TRUE)) {
       stop(sprintf("cut_off_floor lower than the lowest value in %s",
                    var_name))
     }
-    if (cut_off_floor > max(x[[var_name]])) {
+    if (cut_off_floor > max(x[[var_name]], na.rm = TRUE)) {
       stop(sprintf("cut_off_floor higher than the highest value in %s",
                    var_name))
     }
   }
 
   if (!is.na(cut_off_ceiling)) {
-    if (cut_off_ceiling < min(x[[var_name]])) {
+    if (cut_off_ceiling < min(x[[var_name]], na.rm = TRUE)) {
       stop(sprintf("cut_off_ceiling lower than the lowest value in %s",
                    var_name))
     }
-    if (cut_off_ceiling > max(x[[var_name]])) {
+    if (cut_off_ceiling > max(x[[var_name]], na.rm = TRUE)) {
       stop(sprintf("cut_off_ceiling higher than the highest value in %s",
                    var_name))
     }

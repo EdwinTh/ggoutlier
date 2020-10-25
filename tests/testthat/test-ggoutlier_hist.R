@@ -51,3 +51,12 @@ test_that("filter_regular_x gives the correct output", {
   expect_equal(filter_regular_x(x, "b", 2, 6),
                x[3:5, 2, drop = FALSE])
 })
+
+context("ggoutlier_hist - allow for NA values")
+
+test_that("ggoutlier_hist does not fail when NA in x are present", {
+  x <- data.frame(a = c(1:100, NA))
+  expect_error(suppressWarnings(ggoutlier_hist(x, "a", cut_off_floor = 10)) , NA)
+  expect_error(suppressWarnings(ggoutlier_hist(x, "a", cut_off_ceiling = 90)), NA)
+  expect_error(suppressWarnings(ggoutlier_hist(x, "a", cut_off_floor = 10, cut_off_ceiling = 90)), NA)
+})
